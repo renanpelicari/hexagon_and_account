@@ -1,0 +1,43 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create_sequence_customer_id
+      author: renanpelicari
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            minValue: 1
+            schemaName: public
+            sequenceName: seq_customer_id
+            startValue: 1
+
+  - changeSet:
+      id: create_table_customer
+      author: renanpelicari
+      changes:
+        - createTable:
+            tableName: t_customer
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: fullname
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            columnNames: document
+            constraintName: unique_account_document
+            schemaName: public
+            tableName: t_customer

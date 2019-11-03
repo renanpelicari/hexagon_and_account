@@ -1,0 +1,76 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create_sequence_transaction_acc_id
+      author: renanpelicari
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            minValue: 1
+            schemaName: public
+            sequenceName: seq_transaction_acc_id
+            startValue: 1
+
+  - changeSet:
+      id: create_table_transaction_acc
+      author: renanpelicari
+      changes:
+        - createTable:
+            tableName: t_transaction_acc
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: account_id
+                  type: int
+              - column:
+                  name: operation_id
+                  type: int
+              - column:
+                  name: amount
+                  type: money
+                  constraints:
+                    nullable: false
+              - column:
+                  name: referenced_account_id
+                  type: int
+              - column:
+                  name: registered_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: account_id
+            baseTableName: t_account
+            constraintName: fk_transaction_acc_account_id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: t_account
+        - addForeignKeyConstraint:
+            baseColumnNames: operation_type_id
+            baseTableName: t_operation_type
+            constraintName: fk_transaction_acc_oper_type_id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: t_operation_type
+        - addForeignKeyConstraint:
+            baseColumnNames: referenced_account_id
+            baseTableName: t_account
+            constraintName: fk_transaction_acc_ref_account_id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: t_account
+        - addUniqueConstraint:
+            columnNames: acc_number
+            constraintName: unique_account_number
+            schemaName: public
+            tableName: t_account

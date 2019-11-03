@@ -1,0 +1,54 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create_sequence_account_id
+      author: renanpelicari
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            minValue: 1
+            schemaName: public
+            sequenceName: seq_account_id
+            startValue: 1
+
+  - changeSet:
+      id: create_table_account
+      author: renanpelicari
+      changes:
+        - createTable:
+            tableName: t_account
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: int
+              - column:
+                  name: acc_number
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: current_value
+                  type: currency
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: customer_id
+            baseTableName: t_customer
+            constraintName: fk_account_customer_id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: t_customer
+        - addUniqueConstraint:
+            columnNames: acc_number
+            constraintName: unique_account_number
+            schemaName: public
+            tableName: t_account

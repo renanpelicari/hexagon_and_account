@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/scripts/01_create_customer_table.yaml
+  - include:
+      file: db/changelog/scripts/02_create_account_table.yaml
+  - include:
+      file: db/changelog/scripts/03_create_operation_type_table.yaml
+  - include:
+      file: db/changelog/scripts/04_create_transaction_acc_table.yaml
+  - include:
+      file: db/changelog/scripts/05_create_transaction_third_part_table.yaml
+  - include:
+      file: db/changelog/scripts/06_create_transaction_atm_table.yaml
+  - include:
+      file: db/changelog/scripts/07_default_data_insert.yaml

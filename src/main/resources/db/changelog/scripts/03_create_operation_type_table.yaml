@@ -1,0 +1,86 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create_sequence_transaction_type_id
+      author: renanpelicari
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            minValue: 1
+            schemaName: public
+            sequenceName: seq_transaction_type_id
+            startValue: 1
+
+  - changeSet:
+      id: create_table_transaction_type_id
+      author: renanpelicari
+      changes:
+        - createTable:
+            tableName: t_transaction_type
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            columnNames: code
+            constraintName: unique_transaction_type_code
+            schemaName: public
+            tableName: t_transaction_type
+
+  - changeSet:
+      id: create_sequence_operation_type_id
+      author: renanpelicari
+      changes:
+        - createSequence:
+            cycle: true
+            incrementBy: 1
+            minValue: 1
+            schemaName: public
+            sequenceName: seq_operation_type_id
+            startValue: 1
+
+  - changeSet:
+      id: create_table_operation_type_id
+      author: renanpelicari
+      changes:
+        - createTable:
+            tableName: t_operation_type
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: transaction_type_id
+                  type: int
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: transaction_type_id
+            baseTableName: t_transaction_type
+            constraintName: fk_operation_type_transaction_type_id
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: t_transaction_type
+        - addUniqueConstraint:
+            columnNames: code
+            constraintName: unique_operation_type_code
+            schemaName: public
+            tableName: t_operation_type

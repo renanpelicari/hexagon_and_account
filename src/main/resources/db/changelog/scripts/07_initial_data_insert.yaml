@@ -1,0 +1,119 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: insert_transaction_types
+      author: renanpelicari
+      changes:
+        - insert:
+            schemaName: public
+            tableName: t_transaction_type
+            columns:
+              - column:
+                  name: id
+                  value: 100
+              - column:
+                  name: code
+                  value: "account"
+        - insert:
+            schemaName: public
+            tableName: t_transaction_type
+            columns:
+              - column:
+                  name: id
+                  value: 200
+              - column:
+                  name: code
+                  value: "atm"
+        - insert:
+            schemaName: public
+            tableName: t_transaction_type
+            columns:
+              - column:
+                  name: id
+                  value: 300
+              - column:
+                  name: code
+                  value: "third_part"
+
+  - changeSet:
+      id: insert_operation_types
+      author: renanpelicari
+      changes:
+        - insert:
+            schemaName: public
+            tableName: t_operation_type
+            columns:
+              - column:
+                  name: id
+                  value: 101
+              - column:
+                  name: operation_type_id
+                  value: 100
+              - column:
+                  name: code
+                  value: "transfer_in"
+        - insert:
+            schemaName: public
+            tableName: t_operation_type
+            columns:
+              - column:
+                  name: id
+                  value: 102
+              - column:
+                  name: operation_type_id
+                  value: 100
+              - column:
+                  name: code
+                  value: "transfer_out"
+        - insert:
+            schemaName: public
+            tableName: t_operation_type
+            columns:
+              - column:
+                  name: id
+                  value: 201
+              - column:
+                  name: operation_type_id
+                  value: 200
+              - column:
+                  name: code
+                  value: "deposit"
+        - insert:
+            schemaName: public
+            tableName: t_operation_type
+            columns:
+              - column:
+                  name: id
+                  value: 202
+              - column:
+                  name: operation_type_id
+                  value: 200
+              - column:
+                  name: code
+                  value: "withdraw"
+        - insert:
+            schemaName: public
+            tableName: t_operation_type
+            columns:
+              - column:
+                  name: id
+                  value: 301
+              - column:
+                  name: operation_type_id
+                  value: 300
+              - column:
+                  name: code
+                  value: "transfer_in"
+        - insert:
+            schemaName: public
+            tableName: t_operation_type
+            columns:
+              - column:
+                  name: id
+                  value: 302
+              - column:
+                  name: operation_type_id
+                  value: 300
+              - column:
+                  name: code
+                  value: "transfer_out"
