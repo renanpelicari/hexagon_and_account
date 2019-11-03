@@ -12,7 +12,7 @@ interface AccountUIPort {
     fun create(request: CreateAccountRequest)
 
     @PutMapping("/{id}")
-    fun update(request: UpdateAccountRequest, @PathVariable id: String)
+    fun update(request: UpdateAccountRequest, @PathVariable id: Int)
 
     @GetMapping
     fun findAll(): AccountsResponse

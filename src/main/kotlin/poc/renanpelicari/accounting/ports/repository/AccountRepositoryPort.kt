@@ -18,6 +18,8 @@ interface AccountRepositoryPort {
 
     fun findOrganizationAccounts(): List<OrganizationAccount>
 
+    fun findById(id: Int): Account?
+
     fun delete(id: Int): Int
 
     fun decreaseAmount(id: Int, quantity: BigDecimal): Int

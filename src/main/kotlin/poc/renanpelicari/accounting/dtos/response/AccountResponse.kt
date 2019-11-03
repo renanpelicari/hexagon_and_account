@@ -70,3 +70,9 @@ internal fun OrganizationAccount.toResponse() = OrganizationAccountResponse(
     isCustomer = this.isCustomer,
     organization = this.organization.toResponse()
 )
+
+internal fun List<PersonAccount>.toPersonResponse() = this.map { it.toResponse() }
+
+internal fun List<AtmAccount>.toAtmResponse() = this.map { it.toResponse() }
+
+internal fun List<OrganizationAccount>.toOrganizationResponse() = this.map { it.toResponse() }

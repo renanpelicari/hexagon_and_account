@@ -1,5 +1,6 @@
 package poc.renanpelicari.accounting.adapters.repository
 
+import org.springframework.dao.DataAccessException
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
@@ -37,6 +38,12 @@ class AccountServiceAdapter(private val jdbcTemplate: NamedParameterJdbcTemplate
 
     override fun findOrganizationAccounts(): List<OrganizationAccount> =
         jdbcTemplate.query(AccountDb.SQL_SELECT_ALL_ACC_TYPE_ORG, AccountDb.ORG_ACC_ROW_MAPPER)
+
+    override fun findById(id: Int): Account? = try {
+        jdbcTemplate.queryForObject(AccountDb.SQL_SELECT_ONE, mapOf(Pair("id", id)), Account::class.java)
+    } catch (ex: DataAccessException) {
+        null
+    }
 
     override fun delete(id: Int): Int =
         jdbcTemplate.update(AccountDb.SQL_DELETE_BY_ID, mapOf(Pair("id", id)))
@@ -96,6 +103,8 @@ open class AccountDb {
 
         const val SQL_SELECT_ALL_ACC_TYPE_ORG = "SELECT $COLUMNS, ${OrganizationDb.COLUMNS} FROM $TABLE " +
             "INNER JOIN ${OrganizationDb.TABLE} ON acc_owner_id = ${OrganizationDb.PK}"
+
+        const val SQL_SELECT_ONE = "SELECT $COLUMNS FROM $TABLE WHERE id = :id"
 
         const val SQL_DELETE_BY_ID = "DELETE FROM $TABLE WHERE id = :id"
 
