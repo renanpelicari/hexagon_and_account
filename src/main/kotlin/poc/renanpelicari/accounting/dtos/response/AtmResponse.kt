@@ -11,3 +11,5 @@ internal fun Atm.toResponse() = AtmResponse(
     id = this.id!!,
     serialNumber = this.serialNumber
 )
+
+internal fun List<Atm>.toResponse() = this.map { it.toResponse() }

@@ -13,3 +13,5 @@ internal fun Organization.toResponse() = OrganizationResponse(
     name = this.name,
     registerCode = this.registerCode
 )
+
+internal fun List<Organization>.toResponse() = this.map { it.toResponse() }

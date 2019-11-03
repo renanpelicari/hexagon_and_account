@@ -10,5 +10,7 @@ interface OrganizationRepositoryPort {
 
     fun findAll(): List<Organization>
 
+    fun findById(id: Int): Organization?
+
     fun delete(id: Int): Int
 }

@@ -10,7 +10,6 @@ import poc.renanpelicari.accounting.dtos.request.toDomain
 import poc.renanpelicari.accounting.dtos.response.PersonResponse
 import poc.renanpelicari.accounting.dtos.response.toResponse
 
-
 @Service
 class PersonService(private val adapter: PersonServiceAdapter) {
 
