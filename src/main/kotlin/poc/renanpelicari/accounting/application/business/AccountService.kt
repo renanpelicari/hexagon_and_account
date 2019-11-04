@@ -39,6 +39,6 @@ class AccountService(private val adapter: AccountServiceAdapter) {
 
     fun activate(id: Int) = adapter.activate(id).let { }
 
-    private fun findOne(id: Int): Account =
+    fun findOne(id: Int): Account =
         adapter.findById(id) ?: throw ResourceNotFoundException("Account not found by id $id")
 }
