@@ -8,7 +8,7 @@ import poc.renanpelicari.accounting.dtos.response.AtmResponse
 import poc.renanpelicari.accounting.ports.ui.AtmUIPort
 
 @RestController
-@RequestMapping("/api/v1/atm")
+@RequestMapping("/api/v1/atms")
 class AtmControllerAdapter(private val atmService: AtmService) : AtmUIPort {
 
     override fun create(request: AtmRequest) = atmService.create(request)

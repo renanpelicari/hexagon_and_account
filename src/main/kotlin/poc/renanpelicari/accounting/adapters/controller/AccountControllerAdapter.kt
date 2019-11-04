@@ -10,7 +10,7 @@ import poc.renanpelicari.accounting.ports.ui.AccountUIPort
 import java.math.BigDecimal
 
 @RestController
-@RequestMapping("/api/v1/account")
+@RequestMapping("/api/v1/accounts")
 class AccountControllerAdapter(private val accountService: AccountService) : AccountUIPort {
 
     override fun create(request: CreateAccountRequest) = accountService.create(request)

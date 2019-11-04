@@ -17,7 +17,7 @@ class TransactionService(private val adapter: TransactionServiceAdapter,
         request = request,
         account = accountAdapter.findOne(request.accountId),
         accountRef = accountAdapter.findOne(request.accountReferenceId)
-    )
+    ).let { }
 
     private fun registerTransactions(request: TransactionRequest, account: Account, accountRef: Account) =
         request.toDomain(account, accountRef).let { transaction ->

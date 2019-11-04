@@ -9,7 +9,7 @@ import poc.renanpelicari.accounting.dtos.response.OrganizationResponse
 import poc.renanpelicari.accounting.ports.ui.OrganizationUIPort
 
 @RestController
-@RequestMapping("/api/v1/organization")
+@RequestMapping("/api/v1/organizations")
 class OrganizationControllerAdapter(private val organizationService: OrganizationService) : OrganizationUIPort {
 
     override fun create(request: CreateOrganizationRequest) = organizationService.create(request)

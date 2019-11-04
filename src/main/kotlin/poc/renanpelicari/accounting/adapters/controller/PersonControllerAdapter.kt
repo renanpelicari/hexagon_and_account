@@ -9,7 +9,7 @@ import poc.renanpelicari.accounting.dtos.response.PersonResponse
 import poc.renanpelicari.accounting.ports.ui.PersonUIPort
 
 @RestController
-@RequestMapping("/api/v1/person")
+@RequestMapping("/api/v1/people")
 class PersonControllerAdapter(private val personService: PersonService) : PersonUIPort {
 
     override fun create(request: CreatePersonRequest) = personService.create(request)
