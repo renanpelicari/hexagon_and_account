@@ -21,9 +21,12 @@ class AccountControllerAdapter(private val accountService: AccountService) : Acc
 
     override fun delete(id: Int) = accountService.delete(id)
 
-    override fun decreaseAmount(id: Int, quantity: BigDecimal) = accountService.decreaseAmount(id, quantity)
+    override fun transfer(id: Int, quantity: BigDecimal, accountRefId: Int) =
+        accountService.transfer(id, quantity, accountRefId)
 
-    override fun increaseAmount(id: Int, quantity: BigDecimal) = accountService.increaseAmount(id, quantity)
+    override fun deposit(id: Int, quantity: BigDecimal) = accountService.deposit(id, quantity)
+
+    override fun withdraw(id: Int, quantity: BigDecimal) = accountService.withdraw(id, quantity)
 
     override fun activate(id: Int) = accountService.activate(id)
 

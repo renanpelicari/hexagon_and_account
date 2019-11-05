@@ -20,11 +20,14 @@ interface AccountUIPort {
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Int)
 
-    @PutMapping("/{id}/amount/decrease/{quantity}")
-    fun decreaseAmount(@PathVariable id: Int, @PathVariable quantity: BigDecimal)
+    @PutMapping("/{id}/amount/transfer/{quantity}/to/{accountRefId}")
+    fun transfer(@PathVariable id: Int, @PathVariable quantity: BigDecimal, @PathVariable accountRefId: Int)
 
-    @PutMapping("/{id}/amount/increase/{quantity}")
-    fun increaseAmount(@PathVariable id: Int, @PathVariable quantity: BigDecimal)
+    @PutMapping("/{id}/amount/deposit/{quantity}")
+    fun deposit(@PathVariable id: Int, @PathVariable quantity: BigDecimal)
+
+    @PutMapping("/{id}/amount/deposit/{quantity}")
+    fun withdraw(@PathVariable id: Int, @PathVariable quantity: BigDecimal)
 
     @PutMapping("/{id}/activate")
     fun activate(@PathVariable id: Int)
